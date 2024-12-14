@@ -24,3 +24,12 @@
      }
      console.log(cart);
  };
+ export const RemoveFromCart=(productid)=>{
+    let newcart=[];
+    cart.forEach((item)=>{
+        if(item.id!==productid){
+            newcart.push(item);
+        }
+    });
+    cart=newcart;
+ }
