@@ -102,7 +102,7 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
        const productid=link.dataset.productId;
        RemoveFromCart(productid);
        const removedproduct=document.querySelector(`.js-cart-item-${productid}`);
-       removedproduct.remove();
+       removedproduct.remove()
     });
     
 });
