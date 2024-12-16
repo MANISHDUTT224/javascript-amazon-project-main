@@ -1,8 +1,9 @@
 import {cart,RemoveFromCart} from '../data/cart.js';
+import {updatecart} from '../scripts/amazon.js';
 import {products} from "../data/products.js";
 import { formatmoney } from './utils/money.js';
 let cartTotalHTML='';
-
+updatecart();
 cart.forEach((cartItem)=>{
     let matchingproduct;
     let ProductId=cartItem.id;
@@ -99,10 +100,11 @@ document.querySelector('.order-summary').innerHTML=cartTotalHTML;
 });
 document.querySelectorAll('.js-delete-button').forEach((link)=>{
     link.addEventListener('click',()=>{
-       const productid=link.dataset.productId;
-       RemoveFromCart(productid);
-       const removedproduct=document.querySelector(`.js-cart-item-${productid}`);
-       removedproduct.remove()
+      
+       const id=link.dataset.productId;
+       RemoveFromCart(id);
+       const removedproduct=document.querySelector(`.js-cart-item-${id}`);
+       removedproduct.remove()  
     });
     
 });
