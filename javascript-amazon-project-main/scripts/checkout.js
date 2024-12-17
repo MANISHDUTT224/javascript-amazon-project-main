@@ -4,7 +4,7 @@ import { formatmoney } from './utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryoptions } from '../data/deliveryoptions.js';
 import { updatedeliverydate } from '../data/cart.js';
-
+function renderOrderSummary(){
 let cartTotalHTML='';
 const generatedeliveryoption=((productid,cartItem)=>{
   
@@ -159,5 +159,8 @@ button.addEventListener('click',()=>{
   const productid=button.dataset.productId;
   const deliveryid=button.dataset.deliveryId;
   updatedeliverydate(productid,deliveryid);
-})
-})
+  renderOrderSummary();
+});
+});
+}
+renderOrderSummary();
