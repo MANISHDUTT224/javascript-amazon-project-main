@@ -1,4 +1,4 @@
- 
+ import { renderpaymentsummary } from "../scripts/orders/paymentSummary.js";
  export let cart=JSON.parse(localStorage.getItem('storage'));
  if(!cart){
  cart=[{
@@ -70,12 +70,14 @@
             href="amazon.html">  </a>)`;
         
         RemoveFromCart(productid);
+        renderpaymentsummary();
     }
 
     else{
     matchingproduct.quantity=newproductquantity;
     
     document.querySelector(`.quantity-label${productid}`).innerHTML=`${newproductquantity}`;
+    renderpaymentsummary();
     }
     saveTostorage();
     document.querySelector(`.checkout-header-middle-section`).innerHTML=`Checkout (${totalcartquantity()} items<a class="return-to-home-link"

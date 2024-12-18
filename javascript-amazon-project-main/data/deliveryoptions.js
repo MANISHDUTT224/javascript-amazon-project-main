@@ -1,3 +1,12 @@
+ export const findeliveryoption=((deliveryid)=>{
+    let delivoption;
+    deliveryoptions.forEach((option)=>{
+        if(option.deliveryid===deliveryid){
+            delivoption=option;
+        }
+    });
+    return delivoption;
+ })
  export const deliveryoptions=[{
     deliveryid:'1',
     deliverydays:7,
