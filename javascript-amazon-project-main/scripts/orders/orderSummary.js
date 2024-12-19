@@ -5,6 +5,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryoptions,findeliveryoption } from '../../data/deliveryoptions.js';
 import { updatedeliverydate } from '../../data/cart.js';
 import { renderpaymentsummary } from './paymentSummary.js';
+
 export function renderOrderSummary(){
   renderpaymentsummary();
 let cartTotalHTML='';
@@ -17,10 +18,20 @@ const generatedeliveryoption=((productid,cartItem)=>{
    
       deliverydate=(dayjs().add(option.deliverydays,'day'));
       let datestring=deliverydate.format('dddd, MMMM D');
+      let getday=deliverydate.format('dddd');
+      
+      if(getday==='Saturday'){
+        deliverydate=(deliverydate.add(2,'day'));
+        datestring=deliverydate.format('dddd, MMMM D');
+      }
+      else{
+        deliverydate=(deliverydate.add(1,'day'));
+        datestring=deliverydate.format('dddd, MMMM D');
+      }
       deliveryprice=option.deliveryprice;
     
   let formattedelivery=deliveryprice===0?"FREE":"$"+formatmoney(deliveryprice);
-    
+  
   const isChecked=(delivid===option.deliveryid)?"checked":"";
   HTMLDELIVERY+=`<div class="delivery-option-${productid} js-delivery-options " data-product-id="${productid}" data-delivery-id="${option.deliveryid}">
                   <input type="radio" ${isChecked}
@@ -62,6 +73,15 @@ cart.forEach((cartItem)=>{
     let deliveryoption=findeliveryoption(cartItem.deliveryid);
     let deliverydate=(dayjs().add(deliveryoption.deliverydays,'day'));
       let datestring=deliverydate.format('dddd, MMMM D');
+      let getday=deliverydate.format('dddd');
+      if(getday==='Saturday'){
+        deliverydate=(deliverydate.add(2,'day'));
+        datestring=deliverydate.format('dddd, MMMM D');
+      }
+      else{
+        deliverydate=(deliverydate.add(1,'day'));
+        datestring=deliverydate.format('dddd, MMMM D');
+      }
     
     cartTotalHTML+=`<div class="cart-item-container js-cart-item-${matchingproduct.id}">
             <div class="delivery-date">
@@ -114,9 +134,12 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
       
        const id=link.dataset.productId;
        RemoveFromCart(id);
+       renderOrderSummary();
        renderpaymentsummary();
-       const removedproduct=document.querySelector(`.js-cart-item-${id}`);
-       removedproduct.remove() 
+       
+      //  const removedproduct=document.querySelector(`.js-cart-item-${id}`);
+       //removedproduct.remove() 
+       
        updatecheckincart(); 
     });
     
