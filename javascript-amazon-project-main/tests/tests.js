@@ -1,4 +1,7 @@
 import { formatmoney } from "../scripts/utils/money.js";
+import {cart,addtocart} from "../data/cart.js";
+
+
 console.log('test suite:testing formatmoney');
 console.log("converting dollars to cents");
 if(Number(formatmoney(2095))===20.95){

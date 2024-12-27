@@ -135,7 +135,7 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
        const id=link.dataset.productId;
        RemoveFromCart(id);
        renderOrderSummary();
-       renderpaymentsummary();
+     renderpaymentsummary();
        
       //  const removedproduct=document.querySelector(`.js-cart-item-${id}`);
        //removedproduct.remove() 
