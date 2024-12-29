@@ -91,7 +91,7 @@
                     matchingitem=cartItem;
                 }
             });
-           // console.log(deliveryid);
+         
             matchingitem.deliveryid=deliveryid;
            // console.log(cart);
             this.saveTostorage();

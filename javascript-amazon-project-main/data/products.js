@@ -7,6 +7,23 @@ export const findproduct=((productid)=>{
   });
   return matchingproduct;
 });
+class Product{
+  id=undefined;
+  image=undefined;
+  name=undefined;
+  rating=undefined;
+  priceCents=undefined;
+  keywords;
+
+  constructor(ProductDetails){
+    this.id=ProductDetails.id;
+    this.image=ProductDetails.image;
+    this.name=ProductDetails.name;
+    this.rating=ProductDetails.rating;
+    this.priceCents=ProductDetails.priceCents;
+    this.keywords=ProductDetails.keywords;
+  }
+}
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -666,4 +683,5 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((ProductDetails)=>new Product(ProductDetails));
+console.log(products);
