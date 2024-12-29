@@ -1,5 +1,5 @@
  import { renderpaymentsummary } from "../scripts/orders/paymentSummary.js";
- import '../data/cart-oop.js';
+ import '../data/cart-class.js';
  export let cart;
  export const loadFromStorage=(()=>{
  cart=JSON.parse(localStorage.getItem('storage'));
