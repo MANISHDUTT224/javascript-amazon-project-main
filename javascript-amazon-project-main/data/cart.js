@@ -1,4 +1,5 @@
  import { renderpaymentsummary } from "../scripts/orders/paymentSummary.js";
+ import '../data/cart-oop.js';
  export let cart;
  export const loadFromStorage=(()=>{
  cart=JSON.parse(localStorage.getItem('storage'));
@@ -18,7 +19,7 @@
  loadFromStorage();
  const saveTostorage=()=>{
     localStorage.setItem('storage',JSON.stringify(cart));
-    console.log("Saved successfully ",JSON.parse(localStorage.getItem('storage')));
+   // console.log("Saved successfully ",JSON.parse(localStorage.getItem('storage')));
   }
  export const addtocart=(productId)=>{
      let matchitem;
@@ -96,6 +97,6 @@
     });
    // console.log(deliveryid);
     matchingitem.deliveryid=deliveryid;
-    console.log(cart);
+   // console.log(cart);
     saveTostorage();
  })

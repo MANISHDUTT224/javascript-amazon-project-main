@@ -7,7 +7,7 @@ import { updatedeliverydate } from '../../data/cart.js';
 import { renderpaymentsummary } from './paymentSummary.js';
 
 export function renderOrderSummary(){
-  renderpaymentsummary();
+    renderpaymentsummary();
 let cartTotalHTML='';
 const generatedeliveryoption=((productid,cartItem)=>{
   
@@ -19,15 +19,18 @@ const generatedeliveryoption=((productid,cartItem)=>{
       deliverydate=(dayjs().add(option.deliverydays,'day'));
       let datestring=deliverydate.format('dddd, MMMM D');
       let getday=deliverydate.format('dddd');
-      
+       console.log("Initial day: "+getday);
       if(getday==='Saturday'){
         deliverydate=(deliverydate.add(2,'day'));
         datestring=deliverydate.format('dddd, MMMM D');
+        getday=deliverydate.format('dddd');
       }
-      else{
+      else if(getday==='Sunday'){
         deliverydate=(deliverydate.add(1,'day'));
         datestring=deliverydate.format('dddd, MMMM D');
+        getday=deliverydate.format('dddd');
       }
+      console.log(" Changed to: "+getday);
       deliveryprice=option.deliveryprice;
     
   let formattedelivery=deliveryprice===0?"FREE":"$"+formatmoney(deliveryprice);
