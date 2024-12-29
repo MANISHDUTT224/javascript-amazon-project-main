@@ -1,3 +1,4 @@
+import { formatmoney } from "../scripts/utils/money.js";
 export const findproduct=((productid)=>{
   let matchingproduct;
   products.forEach((product)=>{
@@ -22,6 +23,12 @@ class Product{
     this.rating=ProductDetails.rating;
     this.priceCents=ProductDetails.priceCents;
     this.keywords=ProductDetails.keywords;
+  }
+  getStarsUrl(){
+    return `images/ratings/rating-${this.rating.stars*10}.png`;
+  }
+  getPrice(){
+    return `$${formatmoney(this.priceCents)}`;
   }
 }
 export const products = [
@@ -684,4 +691,4 @@ export const products = [
     ]
   }
 ].map((ProductDetails)=>new Product(ProductDetails));
-console.log(products);
+//console.log(products);

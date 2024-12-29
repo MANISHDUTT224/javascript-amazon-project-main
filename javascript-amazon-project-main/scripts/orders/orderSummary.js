@@ -100,7 +100,7 @@ cart.forEach((cartItem)=>{
                  ${matchingproduct.name}
                 </div>
                 <div class="product-price">
-                  $${formatmoney(matchingproduct.priceCents)}
+                  ${matchingproduct.getPrice()}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -134,15 +134,10 @@ document.querySelector('.order-summary').innerHTML=cartTotalHTML;
 
 document.querySelectorAll('.js-delete-button').forEach((link)=>{
     link.addEventListener('click',()=>{
-      
        const id=link.dataset.productId;
        RemoveFromCart(id);
        renderOrderSummary();
      renderpaymentsummary();
-       
-      //  const removedproduct=document.querySelector(`.js-cart-item-${id}`);
-       //removedproduct.remove() 
-       
        updatecheckincart(); 
     });
     
@@ -150,19 +145,13 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
 document.querySelectorAll('.js-update-button').forEach((button)=>{
   button.addEventListener('click',()=>{
     const productid=button.dataset.productId;
- 
     const container=document.querySelector(`.js-cart-item-${productid}`);
-   // console.log(container.classList);
-    
     container.classList.add('is-editing');
-
-    
   });
 }); 
 document.querySelectorAll('.save-quantity-link').forEach((button)=>{
   button.addEventListener('click',()=>{
     const productid=button.dataset.productId;
-    
     const container=document.querySelector(`.js-cart-item-${productid}`);
     container.classList.remove('is-editing');
     const newquantity=document.querySelector(`.js-quantity${productid}`).value;
@@ -172,7 +161,6 @@ document.querySelectorAll('.save-quantity-link').forEach((button)=>{
 });
 document.querySelectorAll('.js-delivery-options').forEach((button)=>{
 button.addEventListener('click',()=>{
-  
   const productid=button.dataset.productId;
   const deliveryid=button.dataset.deliveryId;
   updatedeliverydate(productid,deliveryid);
