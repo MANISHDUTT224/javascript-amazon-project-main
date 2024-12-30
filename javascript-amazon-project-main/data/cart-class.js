@@ -132,8 +132,6 @@ const BusinessCart=new CartGenerator('cart-business');
 
 
 
- console.log(Cart);
- console.log(BusinessCart);
  
 
 

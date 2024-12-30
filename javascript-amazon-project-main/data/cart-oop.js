@@ -127,8 +127,6 @@ localStorage.setItem('cart-business',JSON.stringify(cart1));
  
  BusinessCart.loadFromStorage();
 
- console.log(Cart);
- console.log(BusinessCart);
  
 
 
