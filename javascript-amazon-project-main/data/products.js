@@ -58,12 +58,12 @@ class Appliance extends Product{
   }
 }
 //Some test code for learning this keyword properties
-console.log(this);
+// console.log(this);
 function logThis(){
   console.log(this);
 }
-logThis();
-logThis.call('Hey');//call() method can be used with the function call to give a name to this inside a method
+//logThis();
+//logThis.call('Hey');//call() method can be used with the function call to give a name to this inside a method
 const object3={
   method:function(){
     console.log("From inner function inside an object "+this);
@@ -72,8 +72,8 @@ const object3={
     console.log(this);//Keeps the value of this outside the arrow function outside the object in case of arrow function : O/P:undefined..
   }
 }
-object3.method();
-object3.method1();
+// object3.method();
+// object3.method1();
 
 
 

@@ -71,7 +71,6 @@ if(!updcart){
     });
     return cartquantity;
 }
-console.log(calculatecartquantity());
 const updatecart=()=>{
 
     document.querySelector('.cart-quantity').innerHTML=`${calculatecartquantity()}`;
