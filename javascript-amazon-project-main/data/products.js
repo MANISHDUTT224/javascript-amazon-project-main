@@ -72,7 +72,6 @@ export const loadProductsFetch=(()=>{
   const loadprodfetch=fetch('https://supersimplebackend.dev/products').then((response)=>{
     return response.json();
   }).then((ProductsData)=>{
-  
     products=ProductsData.map((ProductDetails)=>{
   
       if(ProductDetails.type==="clothing"){
@@ -88,8 +87,6 @@ export const loadProductsFetch=(()=>{
   console.log('Fetch is working properly here');
   return loadprodfetch;
 });
-// loadProductsFetch().then(()=>console.log('next step'));
-
 export const loadProducts=((func)=>{
   const xhr=new XMLHttpRequest();
   xhr.addEventListener('load',()=>{
@@ -819,5 +816,4 @@ products = [
     return new Appliance(ProductDetails);
   }
   return new Product(ProductDetails);
- 
 });;

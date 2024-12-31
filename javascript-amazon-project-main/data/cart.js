@@ -6,6 +6,7 @@
  if(!cart){
  cart=[{
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+    productId:"e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     quantity:2,
     deliveryid:'1'
 
@@ -33,7 +34,7 @@
         matchitem.quantity+=1;
      }
      else{
-      cart.push({id:productId,quantity:Number(productquantity),deliveryid:'1'});
+      cart.push({id:productId,productId:productId,quantity:Number(productquantity),deliveryid:'1'});
      }
      saveTostorage();
  };
@@ -112,6 +113,9 @@
       console.log(xhr.response);
      
      });;
+     xhr.addEventListener('error',()=>{
+        console.log("Error occured.Please try again later");
+     })
      
      xhr.open('GET','https://supersimplebackend.dev/cart');
    xhr.send();

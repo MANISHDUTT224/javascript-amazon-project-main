@@ -3,21 +3,27 @@ import {renderpaymentsummary} from './orders/paymentSummary.js';
 import {loadProducts} from '../data/products.js';
 import { loadCart } from '../data/cart.js';
 import { loadProductsFetch } from '../data/products.js';
-async function loadPage(){
-    console.log('load page');
+async function loadPage() {
+    
+    try{
     await loadProductsFetch();
-    const value=await new Promise((resolve)=>{
-        loadCart(()=>{
-            resolve('vue');
-        });
+    loadCart();
+    //here for some reason i couldnt use await with a promise as loadCart() the payment summary is not rendering at load;
+    /*
+    await new Promise((resolve) => {
+        loadCart(() => resolve());//reject(errorstring) can be used as errors in asynchronous programming
     });
+    }
+    */
+   
     renderOrderSummary();
     renderpaymentsummary();
-    return 'value';
 }
-loadPage()
-    
-
+catch(error){
+    console.log("Error occured .Please try again later");
+}
+}
+loadPage();
 // Promise.all([
 //    loadProductsFetch(),
 //     new Promise((resolve)=>{

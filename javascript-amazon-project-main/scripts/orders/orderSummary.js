@@ -56,8 +56,7 @@ const updatecheckincart=()=>{
   let updcart=JSON.parse(localStorage.getItem('storage'));  
   if(!updcart){
     updcart=cart;
-  }
-    
+  } 
       let cartquantity=0;
       updcart.forEach((item)=>{
           cartquantity+=item.quantity;
@@ -68,12 +67,8 @@ const updatecheckincart=()=>{
 }
 updatecheckincart();
 cart.forEach((cartItem)=>{
-    
     let ProductId=cartItem.id;
-    
     let matchingproduct=findproduct(ProductId);
-    //console.log("mProd :"+matchingproduct);   
-    
     let deliveryoption=findeliveryoption(cartItem.deliveryid);
     let deliverydate=(dayjs().add(deliveryoption.deliverydays,'day'));
       let datestring=deliverydate.format('dddd, MMMM D');
