@@ -19,7 +19,7 @@ const generatedeliveryoption=((productid,cartItem)=>{
       deliverydate=(dayjs().add(option.deliverydays,'day'));
       let datestring=deliverydate.format('dddd, MMMM D');
       let getday=deliverydate.format('dddd');
-       console.log("Initial day: "+getday);
+      // console.log("Initial day: "+getday);
       if(getday==='Saturday'){
         deliverydate=(deliverydate.add(2,'day'));
         datestring=deliverydate.format('dddd, MMMM D');
@@ -30,7 +30,7 @@ const generatedeliveryoption=((productid,cartItem)=>{
         datestring=deliverydate.format('dddd, MMMM D');
         getday=deliverydate.format('dddd');
       }
-      console.log(" Changed to: "+getday);
+      //console.log(" Changed to: "+getday);
       deliveryprice=option.deliveryprice;
     
   let formattedelivery=deliveryprice===0?"FREE":"$"+formatmoney(deliveryprice);
@@ -72,7 +72,7 @@ cart.forEach((cartItem)=>{
     let ProductId=cartItem.id;
     
     let matchingproduct=findproduct(ProductId);
-    console.log("mProd :"+matchingproduct);   
+    //console.log("mProd :"+matchingproduct);   
     
     let deliveryoption=findeliveryoption(cartItem.deliveryid);
     let deliverydate=(dayjs().add(deliveryoption.deliverydays,'day'));
