@@ -106,12 +106,11 @@
     matchingitem.deliveryid=deliveryid;
     saveTostorage();
  });
- export const loadCart=((fun)=>{
+ export const loadCart=(()=>{
    const xhr=new XMLHttpRequest();
-   xhr.addEventListener('load',()=>{
-     
+   xhr.addEventListener('load',()=>{ 
       console.log(xhr.response);
-      fun();
+     
      });;
      
      xhr.open('GET','https://supersimplebackend.dev/cart');

@@ -3,18 +3,33 @@ import {renderpaymentsummary} from './orders/paymentSummary.js';
 import {loadProducts} from '../data/products.js';
 import { loadCart } from '../data/cart.js';
 import { loadProductsFetch } from '../data/products.js';
-Promise.all([
-   loadProductsFetch(),
-    new Promise((resolve)=>{
+async function loadPage(){
+    console.log('load page');
+    await loadProductsFetch();
+    const value=await new Promise((resolve)=>{
         loadCart(()=>{
-            resolve('value2');
+            resolve('vue');
         });
-    })
-]).then((vals)=>{
-    console.log(vals);
+    });
     renderOrderSummary();
     renderpaymentsummary();
-});
+    return 'value';
+}
+loadPage()
+    
+
+// Promise.all([
+//    loadProductsFetch(),
+//     new Promise((resolve)=>{
+//         loadCart(()=>{
+//             resolve('value2');
+//         });
+//     })
+// ]).then((vals)=>{
+//     console.log(vals);
+//     renderOrderSummary();
+//     renderpaymentsummary();
+// });
 // loadProducts(()=>{
 //     loadCart(()=>{
 //         renderOrderSummary();
@@ -22,5 +37,3 @@ Promise.all([
 //     });
 // });
 
-
-   
