@@ -1,4 +1,9 @@
 import {renderOrderSummary} from './orders/orderSummary.js';
 import {renderpaymentsummary} from './orders/paymentSummary.js';
-renderOrderSummary();
-renderpaymentsummary();
+import {loadProducts} from '../data/products.js';
+loadProducts(()=>{
+    renderOrderSummary();
+    renderpaymentsummary();
+});
+
+   

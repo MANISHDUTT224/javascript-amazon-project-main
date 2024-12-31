@@ -83,6 +83,19 @@
     document.querySelector(`.checkout-header-middle-section`).innerHTML=`Checkout (${totalcartquantity()} items<a class="return-to-home-link"
     href="amazon.html">  </a>)`;
  });
+ export const calculatecartquantity=()=>{
+    let updcart=JSON.parse(localStorage.getItem('storage'));  
+  if(!updcart){
+    updcart=cart;
+  }
+    
+      let cartquantity=0;
+      updcart.forEach((item)=>{
+          cartquantity+=item.quantity;
+      });
+      return cartquantity;
+  }
+  
  export const updatedeliverydate=((productid,deliveryid)=>{
     let matchingitem;
     cart.forEach((cartItem)=>{

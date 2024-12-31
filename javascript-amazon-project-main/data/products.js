@@ -1,13 +1,5 @@
 import { formatmoney } from "../scripts/utils/money.js";
-export const findproduct=((productid)=>{
-  let matchingproduct;
-  products.forEach((product)=>{
-    if(product.id===productid){
-      matchingproduct=product;
-    }
-  });
-  return matchingproduct;
-});
+
 class Product{
   id;
   image;
@@ -75,9 +67,58 @@ const object3={
 // object3.method();
 // object3.method1();
 
+export let products=[];
+  
+export const loadProducts=((func)=>{
+  const xhr=new XMLHttpRequest();
+  xhr.addEventListener('load',()=>{
+    products=JSON.parse(xhr.response).map((ProductDetails)=>{
+  
+      if(ProductDetails.type==="clothing"){
+        return new Clothing(ProductDetails);
+      }
+      else if(ProductDetails.type==="appliance"){
+        return new Appliance(ProductDetails);
+      }
+      return new Product(ProductDetails);
+     
+    });;
+    console.log("Products loaded succesfully");
+    // console.log(func);
+    func();
+  });
+  xhr.open('GET','https://supersimplebackend.dev/products');
+  xhr.send();
+  
+});
 
-
-export const products = [
+export const findproduct=((productid)=>{
+  // products=[];
+  // const xhr1=new XMLHttpRequest();
+  //   xhr1.addEventListener('load',()=>{
+  //     products=JSON.parse(xhr.response).map((ProductDetails)=>{
+  //       if(ProductDetails.type==="clothing"){
+  //         return new Clothing(ProductDetails);
+  //       }
+  //       else if(ProductDetails.type==="appliance"){
+  //         return new Appliance(ProductDetails);
+  //       }
+  //       return new Product(ProductDetails);
+       
+  //     });;
+  //   });
+  //   xhr1.open('GET','https://supersimplebackend.dev/products');
+  //   xhr1.send();
+  let matchingproduct;
+ 
+  products.forEach((product)=>{
+    if(product.id===productid){
+      matchingproduct=product;
+    }
+  });
+  return matchingproduct;
+});
+products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -759,4 +800,4 @@ export const products = [
   }
   return new Product(ProductDetails);
  
-});
+});;

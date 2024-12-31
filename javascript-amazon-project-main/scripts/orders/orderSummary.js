@@ -1,5 +1,5 @@
 import {cart,RemoveFromCart,updatenewquantity} from '../../data/cart.js';
-import {products,findproduct} from "../../data/products.js";
+import { findproduct,loadProducts } from '../../data/products.js';
 import { formatmoney } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryoptions,findeliveryoption } from '../../data/deliveryoptions.js';
@@ -7,7 +7,7 @@ import { updatedeliverydate } from '../../data/cart.js';
 import { renderpaymentsummary } from './paymentSummary.js';
 
 export function renderOrderSummary(){
-    renderpaymentsummary();
+   
 let cartTotalHTML='';
 const generatedeliveryoption=((productid,cartItem)=>{
   
@@ -70,8 +70,9 @@ updatecheckincart();
 cart.forEach((cartItem)=>{
     
     let ProductId=cartItem.id;
-    let matchingproduct=findproduct(ProductId);
     
+    let matchingproduct=findproduct(ProductId);
+    console.log("mProd :"+matchingproduct);   
     
     let deliveryoption=findeliveryoption(cartItem.deliveryid);
     let deliverydate=(dayjs().add(deliveryoption.deliverydays,'day'));
@@ -164,7 +165,9 @@ button.addEventListener('click',()=>{
   const productid=button.dataset.productId;
   const deliveryid=button.dataset.deliveryId;
   updatedeliverydate(productid,deliveryid);
+  renderpaymentsummary();
   renderOrderSummary();
+
 });
 });
 }
