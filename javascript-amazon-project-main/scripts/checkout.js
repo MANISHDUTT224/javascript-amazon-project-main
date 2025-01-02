@@ -1,13 +1,11 @@
 import {renderOrderSummary} from './orders/orderSummary.js';
 import {renderpaymentsummary} from './orders/paymentSummary.js';
-import {loadProducts} from '../data/products.js';
-import { loadCart } from '../data/cart.js';
+import { loadCart,loadCartFetch } from '../data/cart.js';
 import { loadProductsFetch } from '../data/products.js';
-async function loadPage() {
-    
-    try{
+async function loadPage() {    
+try{
     await loadProductsFetch();
-    loadCart();
+    loadCartFetch();
     //here for some reason i couldnt use await with a promise as loadCart() the payment summary is not rendering at load;
     /*
     await new Promise((resolve) => {
@@ -15,7 +13,6 @@ async function loadPage() {
     });
     }
     */
-   
     renderOrderSummary();
     renderpaymentsummary();
 }

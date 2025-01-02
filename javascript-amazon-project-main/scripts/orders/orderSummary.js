@@ -63,7 +63,7 @@ const updatecheckincart=()=>{
       });
     
     document.querySelector('.checkout-header-middle-section').innerHTML=`Checkout (${cartquantity} items<a class="return-to-home-link"
-            href="amazon.html">  </a>)`;
+            href="index.html">  </a>)`;
 }
 updatecheckincart();
 cart.forEach((cartItem)=>{

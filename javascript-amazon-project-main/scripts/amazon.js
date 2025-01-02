@@ -4,7 +4,25 @@ import { calculatecartquantity } from '../data/cart.js';
 
 let productHTML='',html;
 const renderProductsGrid=(()=>{
-  products.forEach((product)=>{
+  let url=new URL(window.location.href);
+  let searchval=url.searchParams.get('search');
+  let fproducts=products;
+  if(searchval){
+    fproducts=products.filter((product)=>{
+      return product.name.includes(searchval);
+      let matchingKeyword = false;
+
+      product.keywords.forEach((keyword) => {
+        if (keyword.toLowerCase().includes(search.toLowerCase())) {
+          matchingKeyword = true;
+        }
+      });
+
+      return matchingKeyword ||
+        product.name.toLowerCase().includes(search.toLowerCase());
+    });
+  };
+  fproducts.forEach((product)=>{
       html=
       `<div class="product-container">
             <div class="product-image-container">
@@ -88,7 +106,17 @@ const renderProductsGrid=(()=>{
           
       updatecart(); 
       });
-      
+    
+  });
+  document.querySelector('.js-search-button').addEventListener('click',()=>{
+    const search=document.querySelector('.js-search-bar').value;
+    window.location.href=`index.html?search=${search}`;
+  });
+  document.querySelector('body').addEventListener('keydown',(event)=>{
+    if(event.key==='Enter'){
+    const search=document.querySelector('.js-search-bar').value;
+    window.location.href=`index.html?search=${search}`;
+    }
   });
 });
 loadProducts(renderProductsGrid);

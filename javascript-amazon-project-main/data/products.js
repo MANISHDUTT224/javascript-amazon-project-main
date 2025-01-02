@@ -84,7 +84,7 @@ export const loadProductsFetch=(()=>{
      
     });;
   });
-  console.log('Fetch is working properly here');
+ // console.log('Fetch is working properly here');
   return loadprodfetch;
 });
 export const loadProducts=((func)=>{
