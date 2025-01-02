@@ -1,8 +1,11 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { findproduct,loadProductsFetch } from '../data/products.js';
 import { findorder } from '../data/orders.js';
+import { totalcartquantity } from '../data/cart.js';
 async function loadPage(){
     await loadProductsFetch();
+    loadPage();
+    document.querySelector('.cart-quantity').innerHTML=Number(totalcartquantity());
     const url=new URL(window.location.href);
     const orderid=url.searchParams.get('orderId');
     const productid=url.searchParams.get('productId');
